@@ -8,11 +8,11 @@ var evaluation = require('./ml/evaluation')
 // Parameters
 var WORKING_USER = 3 // Index of the user who wants recommendation
 var RECOMMENDATION_COUNT = 5 // Number of recommendations
-var KNN = 10 // [5~20] Number of neighbors (influence on the classification of time)
+var KNN = 5 // [5~20] Number of neighbors (influence on the classification of time)
 
 
 // Random Generated Database #TODO: To import something usefull
-var db = require('./fake-db')(500,125)
+var db = require('./fake-db')(20, 10, 200)
 
 console.log('\nDatabase:')
 console.log(db.slice(0, 10))

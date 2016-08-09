@@ -4,15 +4,22 @@ exports.generateUserSimilarityMatrix = function(users, userXitem){
     var userSimilarity = matrix.new(users.length, users.length)
 
     var similarity = require('../lib/cosine-similarity')
-    for(var i1 in users){
-        var u1 = parseInt(i1)
-        var v1 = userXitem.getLine(u1)
+    var l = users.length
 
-        for(var i2 in users){
-            var u2 = parseInt(i2)
-            var v2 = userXitem.getLine(u2)
-                
-            userSimilarity.set(similarity(v1, v2), u1, u2)
+    for(var i1 = 0; i1 < l; i1++){
+        var v1 = userXitem.getLine(i1)
+
+        for(var i2 = i1; i2 < l; i2++){
+            if(i1 == i2){
+                userSimilarity.set(1, i1, i2)
+            }
+            else{
+                var v2 = userXitem.getLine(i2)
+                var s = similarity(v1, v2)
+                userSimilarity.set(s, i1, i2)
+                userSimilarity.set(s, i2, i1)
+            }
+            
         }
     }
 

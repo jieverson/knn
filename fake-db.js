@@ -1,4 +1,4 @@
-module.exports = function(num_users, num_items){
+module.exports = function(num_users, num_items, db_rows){
     var USERS = []
     for(var i = 0; i < num_users; i++){
         USERS.push('User:' + i)
@@ -16,8 +16,7 @@ module.exports = function(num_users, num_items){
 
     var watch = []
 
-    var NUM_WATCH = num_users * 10
-    for(var i = 0; i < NUM_WATCH; i++){
+    for(var i = 0; i < db_rows; i++){
         watch.push({
             user: USERS[rand(0, USERS.length - 1)],
             item: ITEMS[rand(0, ITEMS.length - 1)],
